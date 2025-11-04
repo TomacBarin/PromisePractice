@@ -2,22 +2,22 @@
 const btnHtml = document.querySelector("#btn");
 const paraHtml = document.querySelector("#displayResult");
 
-function collectW() {
-    paraHtml.textContent = "Laddar sidan..."
+function displayWeather() {
+    paraHtml.textContent = "Sidan laddas";
+    
     fetch("https://api.open-meteo.com/v1/forecast?latitude=56.05&longitude=12.70&current_weather=true")
-    .then(respons => respons.json())
+    .then(response => response.json())
     .then(data => {
-        console.log(data)
+        console.log(data);
         const temp = data.current_weather.temperature;
-        paraHtml.textContent = `Temperaturen är ${temp} grader!`
+        paraHtml.textContent = `Vädret är ${temp} grader.`
     })
     .catch(error => {
-        console.log("Något gick snett.")
-        paraHtml.textContent = "Något gick knas!"
+        console.error("Något gick knas", error)
+        paraHtml.textContent = "Något gick snett."
     })
 }
 
 btnHtml.addEventListener("click", () => {
-    console.log("Klickat!");
-    collectW()
+    paraHtml.textContent = displayWeather()
 })
