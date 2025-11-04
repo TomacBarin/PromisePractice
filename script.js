@@ -21,3 +21,4 @@ btnHtml.addEventListener("click", () => {
     console.log("Klickat!");
     collectW()
 })
+
